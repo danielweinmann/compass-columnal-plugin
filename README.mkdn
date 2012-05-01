@@ -23,9 +23,13 @@ Then run:
 
     bundle install
 
-Finally you add a `config/compass.rb` file to your project containing:
+Add a `config/compass.rb` file to your project containing:
 
     require 'columnal'
+
+In your stylesheet:
+
+    @import columnal/grid
 
 Class-Based Grid System
 =======================
