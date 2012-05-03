@@ -135,13 +135,13 @@ a img
         .suf#{$columnal-class-separator}#{$sub}
           +grid-subcolumn-suffix($n, $sub)
 
-=grid-subcolumn-prefix
+=grid-subcolumn-prefix($n1, $n2)
   $col_width: (4.85% + 8.65% * ($n1 - 1))
   padding-left: ((4.85% + 8.65% * ($n2 - 1)) / $col_width * 100%)
   float: left
   position: relative
 
-=grid-subcolumn-suffix
+=grid-subcolumn-suffix($n1, $n2)
   $col_width: (4.85% + 8.65% * ($n1 - 1))
   padding-right: ((4.85% + 8.65% * ($n2 - 1)) / $col_width * 100%)
   float: left
