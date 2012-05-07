@@ -27,7 +27,7 @@ Add a `config/compass.rb` file to your project containing:
 
     require 'columnal'
 
-In your stylesheet:
+Finally, in your stylesheet:
 
     @import columnal/grid
 
@@ -51,11 +51,11 @@ Let's say we have a 12 columns layout, and we want to use the `<section>` tag as
       section
         +grid-row
         header
-          +grid-column(12)
+          +grid(12)
         article
-          +grid-column(9)
+          +grid(9)
         aside
-          +grid-column(3)
+          +grid(3)
           +last
 
 So we could use the following HTML:
@@ -67,3 +67,83 @@ So we could use the following HTML:
         <aside>And here 3</aside>
       </section>
     </body>
+
+Handling horizontal margins and paddings
+========================================
+
+Every `+grid(n)` column comes with a margin-right as default gutter between columns. But we don't want this margin on the last column because it'll break our layout. For that, we use:
+
+    +grid(3)
+    +last
+    
+Or, for the one's too damn used to 960.gs:
+
+    +grid(3)
+    +omega
+    
+Adding some "blank" (padding-left, actually) columns before your grid column:
+
+    +grid(3)
+    +grid-prefix(9)
+
+Adding some "blank" (padding-right, actually) columns after your grid column:
+
+    +grid(3)
+    +grid-suffix(9)
+
+Using subcolumns
+================
+
+Columnal allows you to use subcolumns that will flatten to a single column on mobile devices, the same way as the normal columns. One thing to note is that sub-columns will only work up to one level deep. More at http://www.columnal.com/#markupcode
+
+    body
+      +grid-container
+      section
+        +grid-row
+        article
+          +grid(9)
+          .author
+            +grid-subcolumn(9, 6)
+          .date
+            +grid-subcolumn(9, 3)
+            +last
+        aside
+          +grid(3)
+          +last
+
+This will divide your `article` into two subcolumns, one of them with 6 columns and the other with 3.
+
+IMPORTANT: since Columnal is a responsive grid system based on percentage, we can't know beforehand how many columns the parent `article` has. Thus, the first parameter will be the number of columns of the parent.
+
+Creating mobile-only or mobile-hidden content
+=====================
+
+If you want something to be shown only in mobile devices:
+
+    +mobile-only
+
+If you want something to be hidden in mobile devices:
+
+    +mobile-hide
+
+Configuring your grid
+=====================
+
+Defining the grid width:
+
+    $columnal-grid-width: 1140px !default
+    
+Defining the number of columns:
+
+    $columnal-columns: 12 !default
+
+Defining the separator for classes on class-based grids:
+
+    $columnal-class-separator: "_" !default
+
+Extras
+======
+
+Basic settings to make type look nice:
+
+    +text
